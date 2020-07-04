@@ -14,3 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+toastr.options.closeButton = true;
+toastr.options.newestOnTop = false;
+toastr.options.showMethod = 'slideDown';

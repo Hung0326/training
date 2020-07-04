@@ -1,10 +1,13 @@
 module ApplicationHelper
-  def full_title(page_title)
-    base_title = "Ruby on Rails Tutorial Sample App"
-    if page_title.empty?
-      base_title
-    else
-      "#{base_title} | #{page_title}"
+
+  def custom_bootstrap_flash
+    flash_messages = []
+    flash.each do |type, message|
+      type = 'success' if type == 'notice'
+      type = 'error'   if type == 'alert'
+      text = "<script>toastr.#{type}('#{message}');</script>"
+      flash_messages << text.html_safe if message
     end
+    flash_messages.join("\n").html_safe
   end
 end
