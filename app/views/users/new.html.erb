@@ -1,3 +1,43 @@
 <% provide(:title, 'Sign up') %>
 <h1>Sign up</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@user) do |f| %>
+    <!-- <%= render 'shared/error_messages' %> -->
+    <%= f.label :name ,'Name' , class: "lbn_sn" %>
+    <%= f.text_field :name ,class: "form-control input_sn" %>
+    <% @user.errors[:name].each do |msg| %>		
+    <div class="box_invalid">
+      <li class="invalid_noti">Name <%= msg %></li>
+    </div>	  
+    <% end %>
+    
+    <%= f.label :email , class: "lbn_sn"%>
+    <%= f.text_field :email ,class: "form-control input_sn" %>
+    <% @user.errors[:email].each do |msg| %>	
+    <div class="box_invalid">
+      <li class="invalid_noti">Email <%= msg %></li>
+    </div>		  
+    <% end %>
+
+    <%= f.label :password , class: "lbn_sn"%>
+    <%= f.password_field :password ,class: "form-control input_sn" %>
+    <% @user.errors[:password].each do |msg| %>		
+    <div class="box_invalid">
+      <li class="invalid_noti">Password <%= msg %></li>
+    </div>	  
+    <% end %>
+
+    <%= f.label :password_confirmation, "Confirmation password" , class: "lbn_sn"%>
+    <%= f.password_field :password_confirmation ,class: "form-control input_sn" %>
+    <% @user.errors[:password_confirmation].each do |msg| %>	
+    <div class="box_invalid">
+      <li class="invalid_noti">Password confirmation <%= msg %></li>
+    </div>		  
+    <% end %>
+
+    <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+  <% end %>
+  </div>
+</div>
