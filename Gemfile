@@ -37,6 +37,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do  
   gem 'byebug'
   gem 'rspec-rails', '4.0.1'
+  gem 'rspec-its'
   gem 'sqlite3', '~> 1.3.11'
 end
 
