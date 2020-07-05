@@ -7,5 +7,18 @@
         <%= @user.name %>
       </h1>
     </section>
+        <div>
+          <% if @user.admin? %>
+            <span>
+              <i>Administrators</i>
+            </span><br>
+          <% end %>
+          <span>
+            Email: <%= @user.email %><br>
+          </span>
+          <span>
+            Start joining from: <%= @user.created_at.strftime("%d - %m - %Y") %>
+          </span>
+        </div>
   </aside>
 </div>
