@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       flash[:success] = 'Wellcome back !' 
       redirect_to user
     else
-      flash.now[:error] = 'Invalid email/password' 
+      flash.now[:error_nor] = 'Invalid email/password' 
       render 'new'
       flash.discard
     end
