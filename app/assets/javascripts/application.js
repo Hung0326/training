@@ -16,7 +16,7 @@
 //= require turbolinks
 //= require_tree .
 toastr.options.closeButton = true;
-toastr.options.newestOnTop = false;
+toastr.options.newestOnTop = true;
 toastr.options.showMethod = 'slideDown';
 
 

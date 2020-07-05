@@ -1,9 +1,15 @@
-<% provide(:title, 'Sign up') %>
-<h1>Sign up</h1>
-
+<% provide(:title, "Edit user") %>
+<h1>Update your profile</h1>
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for(@user) do |f| %>    
+    <%= render 'shared/error_messages' %>
+    <hr>
+    <div>
+      <span style="display: block;">Avatar</span>
+      <%= gravatar_for @user %><br>
+      <a href="http://gravatar.com/emails", class="hover__link">change</a> 
+    </div><br><br><br>
+    <%= form_for(@user) do |f| %>
     <%= f.label :name ,'Name' , class: "lbn_sn" %>
     <%= f.text_field :name ,class: "form-control input_sn" %>
     <% @user.errors[:name].each do |msg| %>		
@@ -36,7 +42,7 @@
     </div>		  
     <% end %>
 
-    <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+    <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
   <% end %>
   </div>
 </div>
