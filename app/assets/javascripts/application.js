@@ -18,7 +18,7 @@
 toastr.options.closeButton = true;
 toastr.options.newestOnTop = true;
 toastr.options.showMethod = 'slideDown';
-
+toastr.options.timeOut = 2000;
 
 $(document).on('turbolinks:load', function(){
   $(".thongbaoloi").delay(2000).slideUp(500, function(){
