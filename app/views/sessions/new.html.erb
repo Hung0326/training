@@ -6,7 +6,7 @@
   <div class="span6 offset3">
     <% if flash.any? %>
       <% flash.each do |key, value| %>
-        <div class="thongbaoloi alert <%= key %>" role="alert"><%= value %></div>		  
+        <div class="thongbaoloi alert <%= key %>" role="alert"><%= value %></div>		 
       <% end %>				
     <% end %>
     <%= form_for(:session, url: sessions_path) do |f| %>
