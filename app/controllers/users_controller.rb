@@ -50,7 +50,9 @@ class UsersController < ApplicationController
     session[:get_name] = get_user.name
     if User.find(params[:id]).destroy
       flash[:success] = "Deleted user #{session[:get_name]}"
-      redirect_to session[:get_request]
+      # redirect_to session[:get_request]
+      
+      redirect_after_destroy_user
     else
       flash[:success] = "Delete user #{session[:get_name]} faild"
       redirect_to users_url
