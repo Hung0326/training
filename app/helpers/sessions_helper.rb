@@ -52,14 +52,12 @@ module SessionsHelper
   def redirect_after_destroy_user(current_url,n)
     get_current_page = session[current_url].to_s.slice(-1)
     count_users = User.count
-    total_record = (get_current_page.to_i - 1) * n
-
-    if get_current_page == 's'
-      redirect_to session[current_url]
-    elsif count_users == total_record               
-      redirect_to users_url << "?page=#{get_current_page.to_i - 1}"                  
+    total_record = ( get_current_page.to_i - 1 ) * n
+    
+    if count_users == total_record     
+      redirect_to users_url << "?page=#{get_current_page.to_i - 1}"          
     else
-      redirect_to session[current_url]
+      redirect_to session[current_url]      
     end    
     session.delete(current_url)
   end
