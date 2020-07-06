@@ -49,10 +49,10 @@ module SessionsHelper
   end
 
   # SP Pagination
-  def redirect_after_destroy_user(current_url)
+  def redirect_after_destroy_user(current_url,n)
     get_current_page = session[current_url].to_s.slice(-1)
     count_users = User.count
-    total_record = (get_current_page.to_i - 1) * 24  
+    total_record = (get_current_page.to_i - 1) * n
 
     if get_current_page == 's'
       redirect_to session[current_url]
