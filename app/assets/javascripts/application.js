@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require jquery.timeago
 //= require turbolinks
 //= require_tree .
 toastr.options.closeButton = true;
@@ -23,5 +24,9 @@ toastr.options.timeOut = 2000;
 $(document).on('turbolinks:load', function(){
   $(".thongbaoloi").delay(2000).slideUp(500, function(){
         $(".thongbaoloi").alert('close');
-    });
+    });  
 })
+
+jQuery(document).ready(function() {
+  jQuery("time.timeago").timeago();
+});
