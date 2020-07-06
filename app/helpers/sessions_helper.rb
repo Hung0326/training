@@ -48,26 +48,20 @@ module SessionsHelper
     session[:return_to] = request.url if request.get?
   end
 
-  def redirect_after_destroy_user
-    get_current_page = session[:get_request].to_s.slice(-1)
+  # SP Pagination
+  def redirect_after_destroy_user(current_url)
+    get_current_page = session[current_url].to_s.slice(-1)
     count_users = User.count
-
-    n_page = count_users / 21.0
-    
+    total_record = (get_current_page.to_i - 1) * 24  
 
     if get_current_page == 's'
-      redirect_to users_url
-    else 
-      get_current_page = get_current_page.to_i
-      total_record = (get_current_page - 1) * 21
-      if n_page        
-        redirect_to session[:get_request]
-      elsif (count_users == total_record) && (n_page == (get_current_page -1 ))
-        # render plain: n_page
-
-        redirect_to users_url << "?page=#{get_current_page - 1}"
-      end    
+      redirect_to session[current_url]
+    elsif count_users == total_record               
+      redirect_to users_url << "?page=#{get_current_page.to_i - 1}"                  
+    else
+      redirect_to session[current_url]
     end    
+    session.delete(current_url)
   end
 
 end

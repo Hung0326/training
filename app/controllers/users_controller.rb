@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
 
   def index    
-    @users = User.all.paginate(page: params[:page], per_page: 21)
+    @users = User.all.paginate(page: params[:page], per_page: 24)
     session[:get_request] = request.url
   end
 
@@ -50,15 +50,12 @@ class UsersController < ApplicationController
     session[:get_name] = get_user.name
     if User.find(params[:id]).destroy
       flash[:success] = "Deleted user #{session[:get_name]}"
-      # redirect_to session[:get_request]
-      
-      redirect_after_destroy_user
+      redirect_after_destroy_user(:get_request)
     else
       flash[:success] = "Delete user #{session[:get_name]} faild"
       redirect_to users_url
     end
-    session.delete(:get_name)
-    session.delete(:get_request)
+    session.delete(:get_name)    
   end
 
   private
