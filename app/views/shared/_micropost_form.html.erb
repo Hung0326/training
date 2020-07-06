@@ -1,0 +1,14 @@
+
+  <% @micropost.errors[:content].each do |msg| %>		
+  <div class="box_invalid">
+    <li class="invalid_noti">Content <%= msg %></li>
+  </div>	  
+  <% end %>
+<%= form_for(@micropost) do |f| %>  
+  <div class="field">
+    <%= f.text_area :content, placeholder: "Compose new micropost...",class: "xxx" %>
+    <%= f.label :content ,style: " visibility: hidden;" %>
+  </div>
+
+  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+<% end %>

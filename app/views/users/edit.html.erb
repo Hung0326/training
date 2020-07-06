@@ -2,14 +2,14 @@
 <h1>Update your profile</h1>
 <div class="row">
   <div class="span6 offset3">
-    <%= render 'shared/error_messages' %>
+    <%= form_for(@user) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
     <hr>
     <div>
       <span style="display: block;">Avatar</span>
       <%= gravatar_for @user %><br>
       <a href="http://gravatar.com/emails", class="hover__link">change</a> 
     </div><br><br><br>
-    <%= form_for(@user) do |f| %>
     <%= f.label :name ,'Name' , class: "lbn_sn" %>
     <%= f.text_field :name ,class: "form-control input_sn" %>
     <% @user.errors[:name].each do |msg| %>		
