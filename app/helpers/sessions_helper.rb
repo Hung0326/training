@@ -54,12 +54,26 @@ module SessionsHelper
     count_users = User.count
     total_record = ( get_current_page.to_i - 1 ) * n
     
-    if count_users == total_record     
-      redirect_to users_url << "?page=#{get_current_page.to_i - 1}"          
+    if count_users == total_record
+      numpage = (get_current_page.to_i - 1).to_s
+      redirect_to (session[current_url].to_s).gsub!(/[0-9]?[0-9]$/,numpage)      
     else
-      redirect_to session[current_url]      
-    end    
-    session.delete(current_url)
+       redirect_to session[current_url]
+    end
+    session.delete(current_url)  
   end
 
+  def redirect_after_destroy_micropost(current_url,n)
+    get_current_page = session[current_url].to_s.slice(-1)
+    count_users = Micropost.where("user_id = ?", current_user.id).count
+    total_record = ( get_current_page.to_i - 1 ) * n
+    
+    if count_users == total_record
+      numpage = (get_current_page.to_i - 1).to_s
+      redirect_to (session[current_url].to_s).gsub!(/[0-9]?[0-9]$/,numpage)      
+    else
+       redirect_to session[current_url]
+    end
+    session.delete(current_url)  
+  end
 end

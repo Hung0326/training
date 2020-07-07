@@ -10,8 +10,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.paginate(page: params[:page])
+    @microposts = @user.microposts.paginate(page: params[:page], per_page: 15)
+    session[:url_show] = request.url
+    session.delete(:url_home)
   end
+
 
   def new
     @user = User.new
