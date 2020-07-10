@@ -1,6 +1,11 @@
 
   <%= gravatar_for user, size: 60 %>
   <%= link_to user.name, user ,class: 'hover__link'%>
+  <% if user.status == 'online' %>
+    <li style="color: rgb(28, 153, 211);"><%= user.status %></li>
+  <% else %>
+    <li style="color: gray;"><%= user.status %></li>
+  <% end %>
   <% if current_user.admin? && !current_user?(user) %>
-  | <%= link_to "Delete", user, class: 'hover__link', method: :delete, data: { confirm: "You sure?" } %>
+    <%= link_to "Delete", user, class: 'hover__link', method: :delete, data: { confirm: "You sure?" } %>
   <% end %>

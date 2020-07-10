@@ -1,5 +1,11 @@
 class User < ActiveRecord::Base
-  has_secure_password  
+  has_secure_password 
+  default_scope { order(name: :asc) }
+  
+  
+  scope :get_online, -> { where(:status => 'online')}
+  scope :get_offline, -> { where(:status => 'offline')}
+  
   has_many :microposts, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy  
   has_many :followed_users, through: :relationships, source: :followed  

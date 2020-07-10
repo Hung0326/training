@@ -12,15 +12,30 @@ def make_users
                        email:    "trunghung5055@gmail.com",
                        password: "000000",
                        password_confirmation: "000000",
-                       admin: true)
-  99.times do |n|
+                       admin: true,
+                       status: "online")
+  20.times do |n|
     name  = Faker::Name.name
     email = "example-#{n+1}@railstutorial.org"
+    status_ol = "online"
     password  = "password"
     User.create!(name:     name,
                  email:    email,
                  password: password,
-                 password_confirmation: password)
+                 password_confirmation: password,
+                 status: status_ol)
+  end
+
+  20.times do |n|
+    name  = Faker::Name.name
+    email = "exampleo-#{n+1}@yahoo.org"
+    status_of = "offline"
+    password  = "password"
+    User.create!(name:     name,
+                 email:    email,
+                 password: password,
+                 password_confirmation: password,
+                 status: status_of)           
   end
 end
 
